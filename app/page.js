@@ -31,7 +31,7 @@ export default function Home() {
             EXTRA! EXTRA!
           </span>
           <Link href="/admin" className="hover:text-red-600 hover:underline cursor-pointer">
-            CITY DESK LOGIN 🔑
+            CITY DESK LOGIN
           </Link>
         </div>
 

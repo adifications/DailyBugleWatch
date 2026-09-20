@@ -1,20 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
-import { collection, onSnapshot, query, orderBy, doc, updateDoc } from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import Link from "next/link";
-import { ShieldAlert, Home, Lock } from "lucide-react";
+import { ShieldAlert, Home, Lock, Trash2 } from "lucide-react";
 
 export default function AdminDashboard() {
   const [hazards, setHazards] = useState([]);
-  
-  // --- NEW SECURITY STATE ---
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [pin, setPin] = useState("");
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // We only want to fetch data if they are actually authorized to see it
     if (!isAuthorized) return;
 
     const q = query(collection(db, "hazards"), orderBy("createdAt", "desc"));
@@ -35,6 +32,18 @@ export default function AdminDashboard() {
     }
   };
 
+  // --- NEW DELETE FUNCTION ---
+  const handleDelete = async (id) => {
+    if (window.confirm("ARE YOU SURE? This will permanently scrub the record from the Daily Bugle archives.")) {
+      try {
+        await deleteDoc(doc(db, "hazards", id));
+      } catch (err) {
+        console.error("Failed to delete hazard", err);
+        alert("Error deleting record");
+      }
+    }
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (pin === "0000") {
@@ -46,7 +55,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // --- SECURITY OVERLAY (Shows if not authorized) ---
   if (!isAuthorized) {
     return (
       <main className="min-h-screen bg-halftone text-black flex items-center justify-center p-4">
@@ -54,7 +62,6 @@ export default function AdminDashboard() {
           onSubmit={handleLogin} 
           className="bg-white border-8 border-black p-8 shadow-[12px_12px_0px_0px_#000] max-w-md w-full relative overflow-hidden"
         >
-          {/* Danger Striping */}
           <div className="absolute top-0 left-0 w-full h-4 bg-[repeating-linear-gradient(45deg,#000,#000_10px,#facc15_10px,#facc15_20px)]"></div>
           
           <div className="text-center mt-6 mb-8">
@@ -95,7 +102,6 @@ export default function AdminDashboard() {
     );
   }
 
-  // --- MAIN DASHBOARD (Shows if authorized) ---
   return (
     <main className="min-h-screen bg-halftone text-black p-4 md:p-8 font-sans">
       <div className="max-w-6xl mx-auto">
@@ -127,14 +133,14 @@ export default function AdminDashboard() {
 
         {/* Master Log Table */}
         <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000] overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[800px]">
+          <table className="w-full text-left border-collapse min-w-[850px]">
             <thead>
               <tr className="bg-yellow-300 border-b-4 border-black text-sm uppercase">
                 <th className="p-4 border-r-4 border-black font-black">Photo</th>
                 <th className="p-4 border-r-4 border-black font-black">Incident Details</th>
                 <th className="p-4 border-r-4 border-black font-black">Location (GPS)</th>
                 <th className="p-4 border-r-4 border-black font-black text-center">Severity / Upvotes</th>
-                <th className="p-4 font-black">Dispatch Status</th>
+                <th className="p-4 font-black">Dispatch Action</th>
               </tr>
             </thead>
             <tbody>
@@ -174,11 +180,11 @@ export default function AdminDashboard() {
                     <td className="p-4 border-r-4 border-black text-center font-black text-4xl text-red-600">
                       {h.upvotes || 0}
                     </td>
-                    <td className="p-4">
+                    <td className="p-4 space-y-3">
                       <select
                         value={h.status || "REPORTED"}
                         onChange={(e) => handleStatusChange(h.id, e.target.value)}
-                        className={`w-full p-3 border-4 border-black font-black uppercase text-sm shadow-[4px_4px_0px_0px_#000] focus:outline-none cursor-pointer ${
+                        className={`w-full p-2.5 border-4 border-black font-black uppercase text-xs shadow-[3px_3px_0px_0px_#000] focus:outline-none cursor-pointer ${
                           h.status === "RESOLVED" ? "bg-green-400 text-black" : 
                           h.status === "IN PROGRESS" ? "bg-yellow-400 text-black" : 
                           "bg-red-600 text-white"
@@ -188,6 +194,14 @@ export default function AdminDashboard() {
                         <option value="IN PROGRESS" className="bg-white text-black">🚧 IN PROGRESS</option>
                         <option value="RESOLVED" className="bg-white text-black">✅ RESOLVED</option>
                       </select>
+
+                      {/* Delete Button */}
+                      <button
+                        onClick={() => handleDelete(h.id)}
+                        className="w-full py-2 bg-black hover:bg-red-600 text-white border-2 border-black font-black text-xs uppercase flex items-center justify-center gap-1.5 shadow-[3px_3px_0px_0px_#ef4444] transition active:translate-x-0.5 active:translate-y-0.5"
+                      >
+                        <Trash2 className="h-4 w-4" /> SCRUB RECORD
+                      </button>
                     </td>
                   </tr>
                 ))

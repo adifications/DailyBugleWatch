@@ -146,7 +146,7 @@ export default function ReportForm() {
       });
 
       setTitle(""); setDescription(""); clearPhoto(); setLocation(null);
-      alert("💥 HAZARD LOGGED TO DAILY BUGLE DESK!");
+      alert("HAZARD LOGGED TO DAILY BUGLE DESK!");
     } catch (err) {
       console.error(err);
       alert("Submission failed.");
