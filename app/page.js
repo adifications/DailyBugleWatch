@@ -40,7 +40,7 @@ export default function Home() {
             THE DAILY BUGLE
           </h1>
           <p className="text-xs md:text-sm font-black uppercase tracking-widest text-slate-800 mt-2">
-            CIVIC HAZARD WATCH • SPOTTED BY YOUR FRIENDLY NEIGHBORHOOD
+            CIVIC HAZARD WATCH • SPOTTED BY YOUR FRIENDLY NEIGHBORHOOD MANUSHYAN
           </p>
         </div>
 

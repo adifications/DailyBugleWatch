@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🕷️📰 Daily Bugle Watch | Civic Hazard Reporting Platform
 
-## Getting Started
+> *"Spotted by your friendly neighborhood civic reporting desk!"*
 
-First, run the development server:
+**Daily Bugle Watch** is a real-time, crowdsourced civic hazard reporting web application wrapped in an engaging, comic-book "Neo-Brutalist" aesthetic. Built to gamify municipal maintenance and infrastructure reporting, it transforms a boring bureaucratic chore into an entertaining, high-energy experience. 
 
+Developed for the **Bit N Build 2026**.
+
+[![Live Demo](https://img.shields.io/badge/status-live-brightgreen.svg?style=for-the-badge)](https://dailybuglewatch.vercel.app)
+**Live App URL:** [dailybuglewatch.vercel.app](https://dailybuglewatch.vercel.app)
+
+---
+
+## Key Features
+
+* **The "Spin Engine" (JJJ Headline Generator):** Bypasses boring text entries by letting users click a chunky **`SPIN IT!`** pen button to instantly wrap reports in sensationalist, J. Jonah Jameson-style headlines (*"MENACE! ... WHERE IS THE MAYOR?!"*).
+* **The Bugle Broadsheet Feed:** Displays submitted hazards like a chaotic bulletin board of torn newspaper clippings using a CSS masonry layout, featuring grayscale-to-color photo hovers and live status stamps.
+* **Interactive Radar Map:** Powered by Leaflet.js with custom HTML/CSS **"Spider-Tracer"** and resolution-aware map markers (`REPORTED`, `IN PROGRESS`, `RESOLVED`) that sync dynamically with database updates.
+* **In-App Live Camera Viewfinder:** Allows citizens to toggle between a live WebRTC camera feed to snap photos directly on the streets or upload files seamlessly.
+* **Secure Municipal Dispatch Desk (`/admin`):** A PIN-protected (`0000`) secret control room where city or campus administrators can track master incident logs, alter status flows, and scrub outdated records.
+* **Bugle Radio:** An integrated retro audio player that toggles a newsroom soundtrack for live presentations.
+
+---
+
+## Tech Stack
+
+* **Frontend:** Next.js (App Router), Tailwind CSS (Custom Neo-Brutalist design system with halftone patterns and hard black drop-shadows).
+* **Backend & Database:** Firebase Firestore (Real-time snapshot listeners for instant multi-user synchronization).
+* **Geospatial Mapping:** Leaflet.js & React-Leaflet with Carto Voyager map tiles.
+* **Media Storage:** Cloudinary API for instant image hosting and base64 preview handling.
+* **Icons & UI:** Lucide React.
+
+---
+
+## Getting Started Locally
+
+Follow these steps to run the project locally on your machine:
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone [https://github.com/YOUR_USERNAME/daily-bugle-watch.git](https://github.com/YOUR_USERNAME/daily-bugle-watch.git)
+cd daily-bugle-watch
