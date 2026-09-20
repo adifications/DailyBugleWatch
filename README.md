@@ -1,4 +1,4 @@
-# 🕷️📰 Daily Bugle Watch | Civic Hazard Reporting Platform
+# 🕷️📰 Daily Bugle Watch | Civic Hazard Reporting
 
 > *"Spotted by your friendly neighborhood civic reporting desk!"*
 
