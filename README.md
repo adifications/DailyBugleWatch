@@ -5,8 +5,7 @@
 
 **Daily Bugle Watch** is a full-stack, real-time civic hazard reporting and municipal dispatch application. Built as an MVP for urban management and campus infrastructure tracking, it bridges the communication gap between citizens reporting local hazards (such as potholes, water leaks, and broken streetlights) and authorities responsible for resolving them.
 
-Developed for the **NASA Space Apps Challenge**.
-
+Developed for the **Bit N Build 2026**.
 ---
 
 ## Core Architecture & Real-World Use Case
