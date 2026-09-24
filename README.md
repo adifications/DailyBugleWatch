@@ -1,4 +1,4 @@
-# 🕷️📰 Daily Bugle Watch | Civic Hazard Reporting
+# 🕷️📰 Daily Bugle Watch | Civic Hazard Reporting 
 
 [![Live Demo](https://img.shields.io/badge/status-live-brightgreen.svg?style=for-the-badge)](https://dailybuglewatch.vercel.app)
 **Live App URL:** [dailybuglewatch.vercel.app](https://dailybuglewatch.vercel.app)
